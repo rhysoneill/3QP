@@ -1,4 +1,3 @@
-# third-quarter-phenomenon[3QP_README.md](https://github.com/user-attachments/files/23856207/3QP_README.md)
 # 3QP – Third-Quarter Phenomenon Behavioral Twin (Lunar Crew Simulation)
 A high-fidelity, modular behavioral simulation designed to reproduce the Third-Quarter Phenomenon in 4–6-person lunar crews using causal, theory-grounded mechanisms.
 
