@@ -1,0 +1,46 @@
+================================================================================
+                               VALIDATION REPORT                                
+================================================================================
+
+Report ID: validation_0ca5c79b3489
+System Version: 3QP-demo-v0.1.0
+Validation Framework: 0.1.0
+Timestamp: 2025-12-02T08:59:01.785134
+Random Seed: 12345
+
+--------------------------------------------------------------------------------
+OVERALL RESULT: WARNING
+--------------------------------------------------------------------------------
+
+SUMMARY:
+  Critical Failures: 0
+  Warnings: 0
+  Modules Validated: 3
+  Time Steps: 10
+  Snapshots Analyzed: 30
+
+VALIDATION BY CATEGORY:
+
+  STRUCTURAL: WARNING
+    Tests: 2/3 passed
+    Warnings: 1
+
+  DATA_INTEGRITY: PASS
+    Tests: 3/3 passed
+
+  DETERMINISM: WARNING
+    Tests: 0/1 passed
+    Warnings: 1
+
+  INTEGRATION: WARNING
+    Tests: 1/2 passed
+    Warnings: 1
+
+  TEMPORAL: WARNING
+    Tests: 1/2 passed
+    Warnings: 1
+
+  METRIC: PASS
+    Tests: 2/2 passed
+
+================================================================================

@@ -1,0 +1,87 @@
+{
+  "report_id": "validation_0ca5c79b3489",
+  "system_version": "3QP-demo-v0.1.0",
+  "validation_framework_version": "0.1.0",
+  "execution_timestamp": "2025-12-02T08:59:01.785134",
+  "random_seed": 12345,
+  "overall_result": "WARNING",
+  "category_results": {
+    "STRUCTURAL": {
+      "category": "STRUCTURAL",
+      "result": "WARNING",
+      "tests_run": 3,
+      "tests_passed": 2,
+      "tests_failed": 0,
+      "tests_warned": 1
+    },
+    "DATA_INTEGRITY": {
+      "category": "DATA_INTEGRITY",
+      "result": "PASS",
+      "tests_run": 3,
+      "tests_passed": 3,
+      "tests_failed": 0,
+      "tests_warned": 0
+    },
+    "TEMPORAL": {
+      "category": "TEMPORAL",
+      "result": "WARNING",
+      "tests_run": 2,
+      "tests_passed": 1,
+      "tests_failed": 0,
+      "tests_warned": 1
+    },
+    "METRIC": {
+      "category": "METRIC",
+      "result": "PASS",
+      "tests_run": 2,
+      "tests_passed": 2,
+      "tests_failed": 0,
+      "tests_warned": 0
+    },
+    "INTEGRATION": {
+      "category": "INTEGRATION",
+      "result": "WARNING",
+      "tests_run": 2,
+      "tests_passed": 1,
+      "tests_failed": 0,
+      "tests_warned": 1
+    },
+    "DETERMINISM": {
+      "category": "DETERMINISM",
+      "result": "WARNING",
+      "tests_run": 1,
+      "tests_passed": 0,
+      "tests_failed": 0,
+      "tests_warned": 1
+    }
+  },
+  "module_results": {
+    "module_01": {
+      "module_id": "module_01",
+      "module_name": "module_01",
+      "result": "PASS"
+    },
+    "module_02": {
+      "module_id": "module_02",
+      "module_name": "module_02",
+      "result": "PASS"
+    },
+    "module_03": {
+      "module_id": "module_03",
+      "module_name": "module_03",
+      "result": "PASS"
+    }
+  },
+  "critical_failures": [],
+  "warnings": [],
+  "recommendations": [],
+  "execution_summary": {
+    "total_time_steps": 10,
+    "validation_start_time": "2025-12-02T08:59:01.785134",
+    "validation_end_time": "2025-12-02T08:59:01.785134",
+    "validation_duration_ms": 0.0,
+    "modules_validated": 3,
+    "messages_validated": 0,
+    "snapshots_analyzed": 30
+  }
+}

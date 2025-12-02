@@ -1,0 +1,151 @@
+{
+  "batches": [
+    {
+      "checksum": "db86d6fb57aaf0e4af9ce67a7871bc9fcb79eaf3552a6b34926b5f213f1aefe3",
+      "compression": "none",
+      "file_path": "STATE\\physiology_STATE_00000000_00000009.jsonl",
+      "file_size_bytes": 2011,
+      "log_type": "STATE",
+      "module_id": "physiology",
+      "record_count": 10,
+      "status": "closed",
+      "timestamp_end": 9,
+      "timestamp_start": 0
+    },
+    {
+      "checksum": "d2f5a028a5f90197d2865760a4e7b6bc4ba153f8e4a6c9d6df1c96cedec842fe",
+      "compression": "none",
+      "file_path": "STATE\\social_network_STATE_00000000_00000009.jsonl",
+      "file_size_bytes": 2130,
+      "log_type": "STATE",
+      "module_id": "social_network",
+      "record_count": 10,
+      "status": "closed",
+      "timestamp_end": 9,
+      "timestamp_start": 0
+    },
+    {
+      "checksum": "e808a28ad895314e62dc7b6798bd5966a1ba65a7966625765bb2022383f132c9",
+      "compression": "none",
+      "file_path": "STATE\\bdi_cycle_STATE_00000000_00000009.jsonl",
+      "file_size_bytes": 2490,
+      "log_type": "STATE",
+      "module_id": "bdi_cycle",
+      "record_count": 10,
+      "status": "closed",
+      "timestamp_end": 9,
+      "timestamp_start": 0
+    },
+    {
+      "checksum": "a75d5124021398ea155bec1d1ed7f58181176d17fd516999dfb19d60918a8fe0",
+      "compression": "none",
+      "file_path": "CYCLE\\core_CYCLE_00000000_00000009.jsonl",
+      "file_size_bytes": 2216,
+      "log_type": "CYCLE",
+      "module_id": "core",
+      "record_count": 10,
+      "status": "closed",
+      "timestamp_end": 9,
+      "timestamp_start": 0
+    },
+    {
+      "checksum": "b00715122c1e3e4688204997710e42ed17874597760d8f5657824e0b9bb20df3",
+      "compression": "none",
+      "file_path": "STATE\\physiology_STATE_00000010_00000019.jsonl",
+      "file_size_bytes": 988,
+      "log_type": "STATE",
+      "module_id": "physiology",
+      "record_count": 5,
+      "status": "closed",
+      "timestamp_end": 19,
+      "timestamp_start": 10
+    },
+    {
+      "checksum": "fcb35df57c558e7d674e1c1211d1dceb4fc2acc4e7b2df69901833588ed8e5ae",
+      "compression": "none",
+      "file_path": "STATE\\social_network_STATE_00000010_00000019.jsonl",
+      "file_size_bytes": 1070,
+      "log_type": "STATE",
+      "module_id": "social_network",
+      "record_count": 5,
+      "status": "closed",
+      "timestamp_end": 19,
+      "timestamp_start": 10
+    },
+    {
+      "checksum": "65f1519d493628f95e58179bd509d7e4d0b6a6473b632fa2135e2a225d9d3fef",
+      "compression": "none",
+      "file_path": "STATE\\bdi_cycle_STATE_00000010_00000019.jsonl",
+      "file_size_bytes": 1250,
+      "log_type": "STATE",
+      "module_id": "bdi_cycle",
+      "record_count": 5,
+      "status": "closed",
+      "timestamp_end": 19,
+      "timestamp_start": 10
+    },
+    {
+      "checksum": "10e466ce80b6a1d2c07f0f2ee300e7bb1aeacb60fa5bb70037e971633f37a2a7",
+      "compression": "none",
+      "file_path": "CYCLE\\core_CYCLE_00000010_00000019.jsonl",
+      "file_size_bytes": 1093,
+      "log_type": "CYCLE",
+      "module_id": "core",
+      "record_count": 5,
+      "status": "closed",
+      "timestamp_end": 19,
+      "timestamp_start": 10
+    },
+    {
+      "checksum": "cbd3a84fd8168bc69a449a482a7b463076e62d3bb4f06b5c1f2ccd6a8ccb765f",
+      "compression": "none",
+      "file_path": "EVENT\\physiology_EVENT_00000000_00000009.jsonl",
+      "file_size_bytes": 243,
+      "log_type": "EVENT",
+      "module_id": "physiology",
+      "record_count": 1,
+      "status": "closed",
+      "timestamp_end": 9,
+      "timestamp_start": 0
+    },
+    {
+      "checksum": "63108cfff2857e4e52ea65a6d60424c7ec025bde1e02a9edf7d3c3ad8005cbfa",
+      "compression": "none",
+      "file_path": "METRIC\\physiology_METRIC_00000000_00000009.jsonl",
+      "file_size_bytes": 542,
+      "log_type": "METRIC",
+      "module_id": "physiology",
+      "record_count": 2,
+      "status": "closed",
+      "timestamp_end": 9,
+      "timestamp_start": 0
+    },
+    {
+      "checksum": "b407a2f269e0365fa52ccf8a4c45d79ef8b65995297c0f61cb4faa7014ce868e",
+      "compression": "none",
+      "file_path": "EVENT\\social_network_EVENT_00000000_00000009.jsonl",
+      "file_size_bytes": 272,
+      "log_type": "EVENT",
+      "module_id": "social_network",
+      "record_count": 1,
+      "status": "closed",
+      "timestamp_end": 9,
+      "timestamp_start": 0
+    },
+    {
+      "checksum": "cd7362d1a641135f6bfeb638365b6242c67a8be4154a0d5fa6003300e3314043",
+      "compression": "none",
+      "file_path": "EVENT\\bdi_cycle_EVENT_00000010_00000019.jsonl",
+      "file_size_bytes": 300,
+      "log_type": "EVENT",
+      "module_id": "bdi_cycle",
+      "record_count": 1,
+      "status": "closed",
+      "timestamp_end": 19,
+      "timestamp_start": 10
+    }
+  ],
+  "creation_time": "2025-12-02T13:44:31.664415Z",
+  "manifest_version": "1.0.0",
+  "simulation_id": "demo_run_001"
+}

@@ -1,0 +1,2 @@
+{"aggregation_method":"MEAN","log_type":"METRIC","log_version":"1.0.0","metric_name":"avg_cortisol","metric_unit":"normalized","metric_value":0.55,"module_id":"physiology","sample_count":5,"timestamp_end":4,"timestamp_start":0,"wall_time":"2025-12-02T13:44:31.642262Z"}
+{"aggregation_method":"MEAN","log_type":"METRIC","log_version":"1.0.0","metric_name":"avg_cortisol","metric_unit":"normalized","metric_value":0.55,"module_id":"physiology","sample_count":5,"timestamp_end":9,"timestamp_start":5,"wall_time":"2025-12-02T13:44:31.654239Z"}
