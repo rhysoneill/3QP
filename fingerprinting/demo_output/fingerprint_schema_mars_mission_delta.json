@@ -1,0 +1,31 @@
+{
+  "mission_name": "mars_mission_delta",
+  "crew_id": "crew_004",
+  "timestamp": "2025-12-16T07:22:59.974069",
+  "run_metadata": {
+    "scenario": "high_stress",
+    "crew_size": 6
+  },
+  "fingerprint": {
+    "collapse_timing": 0.28,
+    "collapse_depth": 0.18,
+    "collapse_day": 50,
+    "fractiousness_index": 0.38,
+    "weakest_pairs": [
+      {
+        "member_i": 0,
+        "member_j": 2,
+        "min_cohesion": 0.15,
+        "min_cohesion_day": 49,
+        "min_cohesion_progress": 0.27,
+        "compatibility_score": 0.42,
+        "final_cohesion": 0.22
+      }
+    ],
+    "risk_score": 0.78,
+    "risk_category": "high risk",
+    "metadata": {
+      "mission_length_days": 180
+    }
+  }
+}

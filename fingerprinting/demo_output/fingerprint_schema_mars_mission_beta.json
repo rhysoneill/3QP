@@ -1,0 +1,31 @@
+{
+  "mission_name": "mars_mission_beta",
+  "crew_id": "crew_002",
+  "timestamp": "2025-12-16T07:22:59.974064",
+  "run_metadata": {
+    "scenario": "baseline",
+    "crew_size": 6
+  },
+  "fingerprint": {
+    "collapse_timing": 0.72,
+    "collapse_depth": 0.45,
+    "collapse_day": 129,
+    "fractiousness_index": 0.28,
+    "weakest_pairs": [
+      {
+        "member_i": 1,
+        "member_j": 4,
+        "min_cohesion": 0.38,
+        "min_cohesion_day": 128,
+        "min_cohesion_progress": 0.71,
+        "compatibility_score": 0.52,
+        "final_cohesion": 0.41
+      }
+    ],
+    "risk_score": 0.38,
+    "risk_category": "moderate risk",
+    "metadata": {
+      "mission_length_days": 180
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "mission_name": "mars_mission_gamma",
+  "crew_id": "crew_003",
+  "timestamp": "2025-12-16T07:22:59.974067",
+  "run_metadata": {
+    "scenario": "baseline",
+    "crew_size": 6
+  },
+  "fingerprint": {
+    "collapse_timing": 0.48,
+    "collapse_depth": 0.62,
+    "collapse_day": 86,
+    "fractiousness_index": 0.15,
+    "weakest_pairs": [
+      {
+        "member_i": 2,
+        "member_j": 5,
+        "min_cohesion": 0.58,
+        "min_cohesion_day": 85,
+        "min_cohesion_progress": 0.47,
+        "compatibility_score": 0.68,
+        "final_cohesion": 0.65
+      }
+    ],
+    "risk_score": 0.25,
+    "risk_category": "low risk",
+    "metadata": {
+      "mission_length_days": 180
+    }
+  }
+}

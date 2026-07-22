@@ -1,0 +1,237 @@
+{
+  "experiment_id": "quick_test_3",
+  "experiment_family": "mission_duration",
+  "description": "Duration +10% (55 days)",
+  "mission_name": "quick_test_3_mission_duration",
+  "timestamp": "2025-12-16T08:43:40.390127",
+  "runtime_seconds": 0.00033473968505859375,
+  "fingerprint": {
+    "mission_name": "quick_test_3_mission_duration",
+    "crew_id": null,
+    "timestamp": "2025-12-16T08:43:40.390127",
+    "run_metadata": {
+      "experiment_id": "quick_test_3",
+      "family": "mission_duration",
+      "duration_multiplier": 1.1,
+      "mission_duration": 55,
+      "intervention_day": null
+    },
+    "fingerprint": {
+      "collapse_timing": 0.8333333333333334,
+      "collapse_depth": 0.8596763022074901,
+      "collapse_day": 45,
+      "fractiousness_index": null,
+      "weakest_pairs": null,
+      "risk_score": 0.12016184889625492,
+      "risk_category": "low risk",
+      "metadata": {
+        "t_min": 45,
+        "mission_length_days": 55,
+        "risk_weight_depth": 0.5,
+        "risk_weight_timing": 0.3,
+        "risk_weight_fractiousness": 0.2,
+        "high_risk_threshold": 0.75,
+        "moderate_risk_threshold": 0.45,
+        "depth_risk_component": 0.14032369779250986,
+        "timing_risk_component": 0.16666666666666663,
+        "fractiousness_risk_component": 0.0
+      }
+    }
+  },
+  "actions": {
+    "action_counts": {
+      "maintain": 45,
+      "support": 9
+    },
+    "action_sequence": [
+      "maintain",
+      "maintain",
+      "maintain",
+      "maintain",
+      "maintain",
+      "maintain",
+      "maintain",
+      "maintain",
+      "maintain",
+      "maintain"
+    ],
+    "pre_collapse_actions": [
+      {
+        "day": 25,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 26,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 27,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 28,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 29,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 30,
+        "action_type": "support",
+        "metadata": {
+          "reason": "proactive_support_tq",
+          "cohesion": 1.0228148528854213,
+          "strain": 0.032633759640497896,
+          "tq_pressure": 0.35630094192706113
+        }
+      },
+      {
+        "day": 31,
+        "action_type": "support",
+        "metadata": {
+          "reason": "proactive_support_tq",
+          "cohesion": 1.0107958517247042,
+          "strain": 0.033074746851282956,
+          "tq_pressure": 0.4291155068680099
+        }
+      },
+      {
+        "day": 32,
+        "action_type": "support",
+        "metadata": {
+          "reason": "proactive_support_tq",
+          "cohesion": 0.9963704420232496,
+          "strain": 0.03412705276457508,
+          "tq_pressure": 0.4907935888640934
+        }
+      },
+      {
+        "day": 33,
+        "action_type": "support",
+        "metadata": {
+          "reason": "proactive_support_tq",
+          "cohesion": 0.979901237168618,
+          "strain": 0.03574644061440385,
+          "tq_pressure": 0.5330782789619892
+        }
+      },
+      {
+        "day": 34,
+        "action_type": "support",
+        "metadata": {
+          "reason": "proactive_support_tq",
+          "cohesion": 0.9620236824379571,
+          "strain": 0.03786523536500528,
+          "tq_pressure": 0.549857972886522
+        }
+      },
+      {
+        "day": 35,
+        "action_type": "support",
+        "metadata": {
+          "reason": "proactive_support_tq",
+          "cohesion": 0.9439552106254022,
+          "strain": 0.04039524105666569,
+          "tq_pressure": 0.5386138294658024
+        }
+      },
+      {
+        "day": 36,
+        "action_type": "support",
+        "metadata": {
+          "reason": "proactive_support_tq",
+          "cohesion": 0.9264182402183234,
+          "strain": 0.04323155622575137,
+          "tq_pressure": 0.5010394332915025
+        }
+      },
+      {
+        "day": 37,
+        "action_type": "support",
+        "metadata": {
+          "reason": "proactive_support_tq",
+          "cohesion": 0.9102739040677146,
+          "strain": 0.04625712061042001,
+          "tq_pressure": 0.4426227667727592
+        }
+      },
+      {
+        "day": 38,
+        "action_type": "support",
+        "metadata": {
+          "reason": "proactive_support_tq",
+          "cohesion": 0.896194556758653,
+          "strain": 0.049347794393906984,
+          "tq_pressure": 0.37133255296731765
+        }
+      },
+      {
+        "day": 39,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 40,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 41,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 42,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 43,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 44,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 45,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      }
+    ]
+  },
+  "narratives": null,
+  "metadata": {}
+}

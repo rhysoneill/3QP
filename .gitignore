@@ -1,0 +1,32 @@
+# API keys — never commit
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Simulation output (large, generated)
+integration/runtime/output/
+
+# Fitted configs (generated artifacts)
+data/fitted_config.json
+data/*_fitted.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp files from Claude Code
+tmpclaude-*/
+nul
