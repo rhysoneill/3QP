@@ -1,0 +1,5 @@
+{
+  "mission_name": "invalid_crew_test",
+  "mission_length_days": 200,
+  "crew_preset": "nonexistent_crew"
+}

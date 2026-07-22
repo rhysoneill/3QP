@@ -1,0 +1,10 @@
+{
+  "mission_name": "high_cohesion_test",
+  "mission_length_days": 200,
+  "output_dir": "output",
+  "enable_validation": true,
+  "enable_logging": true,
+  "verbose": true,
+  "core_config_override": null,
+  "crew_preset": "high_cohesion_team"
+}

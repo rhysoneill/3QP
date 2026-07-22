@@ -1,0 +1,231 @@
+{
+  "experiment_id": "quick_test_2",
+  "experiment_family": "mission_duration",
+  "description": "Duration +0% (50 days)",
+  "mission_name": "quick_test_2_mission_duration",
+  "timestamp": "2025-12-16T08:43:40.387886",
+  "runtime_seconds": 0.0002689361572265625,
+  "fingerprint": {
+    "mission_name": "quick_test_2_mission_duration",
+    "crew_id": null,
+    "timestamp": "2025-12-16T08:43:40.387886",
+    "run_metadata": {
+      "experiment_id": "quick_test_2",
+      "family": "mission_duration",
+      "duration_multiplier": 1.0,
+      "mission_duration": 50,
+      "intervention_day": null
+    },
+    "fingerprint": {
+      "collapse_timing": 0.8571428571428571,
+      "collapse_depth": 0.8771174984766046,
+      "collapse_day": 42,
+      "fractiousness_index": null,
+      "weakest_pairs": null,
+      "risk_score": 0.10429839361884058,
+      "risk_category": "low risk",
+      "metadata": {
+        "t_min": 42,
+        "mission_length_days": 50,
+        "risk_weight_depth": 0.5,
+        "risk_weight_timing": 0.3,
+        "risk_weight_fractiousness": 0.2,
+        "high_risk_threshold": 0.75,
+        "moderate_risk_threshold": 0.45,
+        "depth_risk_component": 0.12288250152339542,
+        "timing_risk_component": 0.1428571428571429,
+        "fractiousness_risk_component": 0.0
+      }
+    }
+  },
+  "actions": {
+    "action_counts": {
+      "maintain": 42,
+      "support": 7
+    },
+    "action_sequence": [
+      "maintain",
+      "maintain",
+      "maintain",
+      "maintain",
+      "maintain",
+      "maintain",
+      "maintain",
+      "maintain",
+      "maintain",
+      "maintain"
+    ],
+    "pre_collapse_actions": [
+      {
+        "day": 22,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 23,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 24,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 25,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 26,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 27,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 28,
+        "action_type": "support",
+        "metadata": {
+          "reason": "proactive_support_tq",
+          "cohesion": 1.0182221642680973,
+          "strain": 0.03184693202710357,
+          "tq_pressure": 0.4151617810939543
+        }
+      },
+      {
+        "day": 29,
+        "action_type": "support",
+        "metadata": {
+          "reason": "proactive_support_tq",
+          "cohesion": 1.00426705003578,
+          "strain": 0.031088324633524428,
+          "tq_pressure": 0.48537329642152743
+        }
+      },
+      {
+        "day": 30,
+        "action_type": "support",
+        "metadata": {
+          "reason": "proactive_support_tq",
+          "cohesion": 0.9880010246568014,
+          "strain": 0.030951126575688083,
+          "tq_pressure": 0.5330782789619892
+        }
+      },
+      {
+        "day": 31,
+        "action_type": "support",
+        "metadata": {
+          "reason": "proactive_support_tq",
+          "cohesion": 0.9701618324384502,
+          "strain": 0.03144259277841744,
+          "tq_pressure": 0.55
+        }
+      },
+      {
+        "day": 32,
+        "action_type": "support",
+        "metadata": {
+          "reason": "proactive_support_tq",
+          "cohesion": 0.9520586733718384,
+          "strain": 0.032543863313895534,
+          "tq_pressure": 0.5330782789619892
+        }
+      },
+      {
+        "day": 33,
+        "action_type": "support",
+        "metadata": {
+          "reason": "proactive_support_tq",
+          "cohesion": 0.9346861525258632,
+          "strain": 0.03421074684724469,
+          "tq_pressure": 0.48537329642152743
+        }
+      },
+      {
+        "day": 34,
+        "action_type": "support",
+        "metadata": {
+          "reason": "proactive_support_tq",
+          "cohesion": 0.9190482862439162,
+          "strain": 0.036375612410860896,
+          "tq_pressure": 0.4151617810939539
+        }
+      },
+      {
+        "day": 35,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 36,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 37,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 38,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 39,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 40,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 41,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      },
+      {
+        "day": 42,
+        "action_type": "maintain",
+        "metadata": {
+          "reason": "no threshold exceeded"
+        }
+      }
+    ]
+  },
+  "narratives": null,
+  "metadata": {}
+}

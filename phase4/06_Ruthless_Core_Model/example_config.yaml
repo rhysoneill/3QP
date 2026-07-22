@@ -1,0 +1,61 @@
+# Ruthless Core Model - Example Configuration
+#
+# This configuration file demonstrates how to set up the Ruthless Core Model
+# for simulating third quarter dynamics in long-duration missions.
+
+# Mission parameters
+mission_length_days: 200
+
+# Initial conditions
+initial_monotony: 0.0
+initial_strain: 0.0
+initial_cohesion: 1.0
+
+# Monotony parameters
+# m_base: Daily baseline monotony accumulation (positive value)
+# m_novelty: Monotony reduction per novelty event
+m_base: 0.008
+m_novelty: 0.2
+
+# Strain parameters
+# s_workload: Strain increase per unit workload
+# s_mono: Strain increase per unit monotony
+# s_recovery: Strain decrease per unit recovery
+# s_leak: Proportional strain adaptation/leak (prevents unbounded growth)
+s_workload: 0.03
+s_mono: 0.004
+s_recovery: 0.04
+s_leak: 0.030
+
+# Third quarter pressure parameters
+# q_peak: Maximum amplitude of TQ pressure (typical range 0.3-0.8)
+# q_center: Center position as fraction of mission (0.66-0.75 for third quarter)
+# q_width: Width/spread of Gaussian hump (typical range 0.10-0.20)
+q_peak: 0.55
+q_center: 0.62
+q_width: 0.08
+
+# Cohesion parameters
+# c_strain: Cohesion decrease per unit psychological strain
+# c_q: Cohesion decrease per unit TQ pressure
+# c_shared_success: Cohesion increase per shared success event
+# c_rebound: Cohesion stabilization/rebound after TQ peak
+c_strain: 0.008
+c_q: 0.033
+c_shared_success: 0.06
+c_rebound: 0.01
+
+# Input schedules
+# If not specified, reasonable defaults will be generated
+# Each should be a list with length = mission_length_days
+
+# workload_schedule: [0.6, 0.65, 0.55, ...]  # Daily workload [0, 1]
+# recovery_schedule: [0.4, 0.4, 0.4, ...]    # Daily recovery [0, 1]
+# novelty_events: [1, 1, 0, 0, ...]          # Binary novelty indicators
+# success_events: [0, 0, 1, 0, ...]          # Binary shared success indicators
+
+# For programmatic generation, leave these commented and defaults will be used:
+# - Workload: constant ~0.6 with slight sinusoidal variation
+# - Recovery: constant 0.4
+# - Novelty: high early (first 20 days), rare thereafter
+# - Success: occasional events every ~30 days

@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3QP — Technical Overview</title>
+<style>
+  :root {
+    --bg:       #0b0f1a;
+    --surface:  #131929;
+    --surface2: #1a2540;
+    --border:   #1e2d4a;
+    --text:     #cdd9f0;
+    --muted:    #5b7099;
+    --accent:   #4a90d9;
+    --red:      #e05c5c;
+    --green:    #5dbd5d;
+    --orange:   #e8924a;
+    --yellow:   #e8c94a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.75;
+    padding-bottom: 80px;
+  }
+
+  /* ---- Cover ---- */
+  .cover {
+    background: linear-gradient(160deg, #0e1628 0%, #0b1a35 60%, #0e1628 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 64px 80px 56px;
+  }
+  .cover-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .cover h1 {
+    font-size: 42px;
+    font-weight: 800;
+    color: #e8edf8;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .cover h1 span { color: var(--accent); }
+  .cover-sub {
+    font-size: 16px;
+    color: #8aa5c8;
+    max-width: 620px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+  .cover-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ---- TOC ---- */
+  .toc {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 80px;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .toc-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--muted);
+    cursor: default;
+  }
+  .toc-num {
+    background: var(--accent);
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ---- Section wrapper ---- */
+  .section {
+    padding: 56px 80px 0;
+    max-width: 1100px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    background: var(--accent);
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #e8edf8;
+  }
+
+  /* ---- Subsections ---- */
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #9ab0d4;
+    margin: 36px 0 12px;
+    letter-spacing: 0.02em;
+  }
+  h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 24px 0 8px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  p { margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+
+  strong { color: #e0e8f5; font-weight: 600; }
+  em { color: var(--orange); font-style: normal; font-weight: 500; }
+
+  /* ---- Lists ---- */
+  ul, ol {
+    padding-left: 20px;
+    margin-bottom: 14px;
+  }
+  li { margin-bottom: 6px; }
+  li:last-child { margin-bottom: 0; }
+
+  /* ---- Code / equations ---- */
+  code {
+    font-family: "Fira Code", "Cascadia Code", Consolas, monospace;
+    font-size: 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 6px;
+    color: #a8d4f0;
+  }
+  pre {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    overflow-x: auto;
+    margin: 12px 0 20px;
+    font-family: "Fira Code", "Cascadia Code", Consolas, monospace;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #a8d4f0;
+  }
+  pre .comment { color: var(--muted); }
+
+  /* ---- Tables ---- */
+  .table-wrap { overflow-x: auto; margin: 14px 0 24px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+  }
+  th {
+    background: var(--surface2);
+    color: #9ab0d4;
+    font-weight: 600;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  td {
+    padding: 9px 14px;
+    border-bottom: 1px solid #141e30;
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(74,144,217,0.04); }
+
+  /* ---- Callout boxes ---- */
+  .callout {
+    border-left: 3px solid var(--accent);
+    background: rgba(74,144,217,0.06);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 18px 0 24px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .callout.orange { border-color: var(--orange); background: rgba(232,146,74,0.06); }
+  .callout.green  { border-color: var(--green);  background: rgba(93,189,93,0.06); }
+  .callout.red    { border-color: var(--red);    background: rgba(224,92,92,0.06); }
+
+  /* ---- Divider ---- */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 48px 80px 0;
+  }
+
+  /* ---- Pipeline diagram ---- */
+  .pipeline {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 0;
+    margin: 20px 0 28px;
+  }
+  .pipe-step {
+    flex: 1;
+    min-width: 120px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 12px;
+    text-align: center;
+    position: relative;
+  }
+  .pipe-step + .pipe-step { margin-left: 6px; }
+  .pipe-arrow {
+    display: flex;
+    align-items: center;
+    color: var(--muted);
+    font-size: 16px;
+    padding: 0 2px;
+    align-self: center;
+  }
+  .pipe-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+  .pipe-desc {
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ---- Equation grid ---- */
+  .eq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+    gap: 14px;
+    margin: 16px 0 24px;
+  }
+  .eq-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .eq-var {
+    font-size: 13px;
+    font-weight: 700;
+    color: #e0e8f5;
+    margin-bottom: 4px;
+  }
+  .eq-var span {
+    display: inline-block;
+    background: var(--surface2);
+    border-radius: 4px;
+    padding: 1px 8px;
+    font-family: "Fira Code", Consolas, monospace;
+    font-size: 15px;
+    color: var(--accent);
+    margin-right: 8px;
+  }
+  .eq-desc { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+  .eq-card pre { margin: 0; font-size: 11px; }
+
+  /* ---- Trait table ---- */
+  .trait-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-right: 4px;
+  }
+  .trait-O { background: rgba(93,189,93,0.15); color: #5dbd5d; }
+  .trait-C { background: rgba(74,144,217,0.15); color: #4a90d9; }
+  .trait-E { background: rgba(232,146,74,0.15); color: #e8924a; }
+  .trait-A { background: rgba(168,124,220,0.15); color: #a87cdc; }
+  .trait-N { background: rgba(224,92,92,0.15);  color: #e05c5c; }
+</style>
+</head>
+<body>
+
+<!-- ===== Cover ===== -->
+<div class="cover">
+  <div class="cover-eyebrow">MITRE &nbsp;&middot;&nbsp; Behavioral Health Modeling &nbsp;&middot;&nbsp; Technical Overview</div>
+  <h1>3QP — <span>Third-Quarter</span> Phenomenon<br>Behavioral Twin</h1>
+  <div class="cover-sub">
+    A causal, deterministic simulation engine for lunar crew psychological health.
+    Built to model, reproduce, and study the Third-Quarter Phenomenon — the documented
+    behavioral deterioration that occurs 50&ndash;75% through long-duration isolated missions.
+  </div>
+  <div class="cover-tags">
+    <span class="tag">Python 3.8+</span>
+    <span class="tag">No ML / No Black Box</span>
+    <span class="tag">Per-Agent Big Five Personality</span>
+    <span class="tag">Full Graph Social Dynamics</span>
+    <span class="tag">Counterfactual Intervention</span>
+    <span class="tag">200-Day Mission Twin</span>
+    <span class="tag">JSON &mdash; Fully Auditable</span>
+  </div>
+</div>
+
+<!-- ===== TOC ===== -->
+<div class="toc">
+  <div class="toc-item"><div class="toc-num">1</div> What 3QP Is</div>
+  <div class="toc-item"><div class="toc-num">2</div> What Is Measured &amp; How</div>
+  <div class="toc-item"><div class="toc-num">3</div> How Agents Have Behavior</div>
+</div>
+
+
+<!-- ===================================== -->
+<!-- SECTION 1: What 3QP Is               -->
+<!-- ===================================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>What 3QP Is</h2>
+  </div>
+
+  <p>
+    <strong>3QP</strong> is a causal, deterministic behavioral simulation engine for small isolated crews.
+    It is designed to model, reproduce, and study the <strong>Third-Quarter Phenomenon (TQP)</strong> —
+    the empirically documented psychological and social deterioration that occurs roughly 50&ndash;75%
+    through long-duration confined missions such as MARS-500, HI-SEAS, and Concordia.
+  </p>
+
+  <div class="callout">
+    The name refers to the phenomenon itself. The goal is a <strong>mission twin</strong> &mdash;
+    a digital replica of a specific crew that runs day-by-day alongside a real mission and tracks
+    psychological health at the individual level. A Mission Control operator can inject communications
+    into the twin at any time and observe the projected effect before acting in the real world.
+  </div>
+
+  <h3>Core Design Principles</h3>
+
+  <ul>
+    <li>
+      <strong>Causal, not statistical.</strong> Every number traces through an auditable chain:
+      resource &rarr; perception &rarr; belief &rarr; internal state &rarr; action &rarr; physics.
+      No regression, no ML, no hidden state.
+    </li>
+    <li>
+      <strong>Deterministic.</strong> The same crew, the same events, and the same seed always produce
+      exactly the same trajectory. This enables true counterfactuals: &ldquo;what would have happened
+      if Mission Control sent a check-in on day 100?&rdquo;
+    </li>
+    <li>
+      <strong>Layered and separated.</strong> The physics engine cannot be written to by behavioral layers.
+      Narrative rendering cannot influence simulation outcomes. These invariants are enforced structurally.
+    </li>
+    <li>
+      <strong>Per-agent, personality-grounded.</strong> Each astronaut has a Big Five (OCEAN) personality
+      profile that modulates every stage of the pipeline — how they perceive scarcity, how fast their
+      beliefs shift, and when they withdraw vs. cooperate.
+    </li>
+    <li>
+      <strong>Transparent and auditable.</strong> Every simulation day is serialized to JSON. Every
+      intermediate state — resources, perceptions, beliefs, internal state, actions, physics inputs,
+      physics outputs — is logged and inspectable.
+    </li>
+  </ul>
+
+  <h3>Architecture at a Glance</h3>
+
+  <div class="pipeline">
+    <div class="pipe-step"><div class="pipe-title">Resource Layer</div><div class="pipe-desc">Objective consumables: coffee, food, sleep, comms delay, task load</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="pipe-title">Perception</div><div class="pipe-desc">Per-agent, personality-filtered subjective view of resources</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="pipe-title">Belief Engine</div><div class="pipe-desc">6 named slow-updating beliefs formed from perception only</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="pipe-title">Internal State</div><div class="pipe-desc">7 per-agent variables: stress, morale, fatigue, trust, boredom…</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="pipe-title">Action Selection</div><div class="pipe-desc">Personality-threshold policy: SUPPORT / ENGAGE / MAINTAIN / ESCALATE / WITHDRAW</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step"><div class="pipe-title">Physics</div><div class="pipe-desc">RuthlessCoreModel: M / S / Q / C coupled difference equations</div></div>
+  </div>
+
+  <div class="callout orange">
+    <strong>Key invariant:</strong> Resource scarcity never touches internal state directly.
+    Communication delay never directly reduces trust. Isolation duration alone does not bias
+    state in any direction. Every causal path goes through perception and belief first.
+  </div>
+
+  <h3>The Four Collapse Modes</h3>
+  <p>Phase D counterfactual analysis identified four distinct failure taxonomies:</p>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Mode</th><th>Driver</th><th>Onset</th><th>Signature</th></tr>
+    <tr><td><strong>Cohesion-Led</strong></td><td>Gradual social erosion</td><td>TQP-aligned (days 100&ndash;150)</td><td>C falls steadily; S moderate</td></tr>
+    <tr><td><strong>Strain-Spike</strong></td><td>Acute workload overwhelm</td><td>Early</td><td>S surges rapidly; C follows</td></tr>
+    <tr><td><strong>Dyadic Fracture</strong></td><td>Relationship-specific breakdown</td><td>Variable</td><td>Social network fragmentation; trust asymmetry</td></tr>
+    <tr><td><strong>Monotony Erosion</strong></td><td>Disengagement drift</td><td>Late (days 150+)</td><td>M builds; boredom spreads; Q rises slowly</td></tr>
+  </table>
+  </div>
+
+  <h3>What 3QP Is Not</h3>
+  <ul>
+    <li>Not a scheduling or logistics tool</li>
+    <li>Not an AI or ML system — no training, no weights, no inference</li>
+    <li>Not a full BDI agent architecture — it is a minimal causal dynamical model</li>
+    <li>Not yet validated against real analog mission data (calibration pipeline is ready; data is pending)</li>
+  </ul>
+</div>
+
+<hr class="divider">
+
+<!-- ===================================== -->
+<!-- SECTION 2: What Is Measured & How    -->
+<!-- ===================================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>What Is Measured &amp; How</h2>
+  </div>
+
+  <p>
+    Every simulation day produces a complete snapshot. There are four measurement families,
+    each corresponding to a layer in the architecture.
+  </p>
+
+  <!-- 2A: Physics -->
+  <h3>A. Physics Layer &mdash; 4 Crew-Level State Variables</h3>
+  <p>
+    The <strong>RuthlessCoreModel</strong> is the frozen physics engine. It takes four scalar inputs
+    each day and updates four state variables via discrete-time difference equations.
+    These are the primary outputs used for mission health assessment.
+  </p>
+
+  <div class="eq-grid">
+    <div class="eq-card">
+      <div class="eq-var"><span>M</span> Monotony</div>
+      <div class="eq-desc">Accumulates boredom and environmental sameness. Knocked back by novelty events.</div>
+      <pre>M[t+1] = max(0, M[t] + m_base − m_novelty × novelty)
+
+<span class="comment">m_base   = 0.008  (daily increment)
+m_novelty = 0.20  (reduction per novelty event)</span></pre>
+    </div>
+    <div class="eq-card">
+      <div class="eq-var"><span>S</span> Strain</div>
+      <div class="eq-desc">Accumulated psychological load. Rises from workload and monotony; leaks via natural adaptation.</div>
+      <pre>S[t+1] = max(0, S[t]
+  + s_workload × workload
+  + s_mono    × M[t]
+  − s_recovery × recovery
+  − s_leak    × S[t])
+
+<span class="comment">s_workload = 0.03, s_recovery = 0.04
+s_mono = 0.004, s_leak = 0.030</span></pre>
+    </div>
+    <div class="eq-card">
+      <div class="eq-var"><span>Q</span> Third-Quarter Pressure</div>
+      <div class="eq-desc">Endogenous — emerges from M, S, and C. Not clock-based. TQP timing is a result, not an input.</div>
+      <pre>Q[t+1] = clamp(
+  c_q_m × (M/2.0)        <span class="comment"># normalized monotony</span>
++ c_q_s × S              <span class="comment"># strain</span>
++ c_q_c × max(0, 1−C))   <span class="comment"># cohesion deficit</span>
+
+<span class="comment">c_q_m = 0.15, c_q_s = 0.20, c_q_c = 0.10</span></pre>
+    </div>
+    <div class="eq-card">
+      <div class="eq-var"><span>C</span> Cohesion</div>
+      <div class="eq-desc">Social bond quality. The primary TQP indicator. Bounded [0.05, 1.2]. Includes a rebound mechanism.</div>
+      <pre>C[t+1] = clamp(C[t]
+  − c_strain × S[t]       <span class="comment"># strain erodes</span>
+  − c_q      × Q[t]       <span class="comment"># TQ pressure erodes</span>
+  + c_success × success   <span class="comment"># shared wins restore</span>
+  + rebound)              <span class="comment"># if Q actively falling</span>
+
+rebound = c_rebound × (1−C[t])  <span class="comment">if Q[t+1] &lt; Q[t]</span></pre>
+    </div>
+  </div>
+
+  <div class="callout green">
+    <strong>Why Q is endogenous:</strong> The original model used a calendar-based Gaussian peak at mission midpoint.
+    That was replaced. Q now emerges when — and only when — the crew's actual monotony, strain, and cohesion
+    align to create pressure. A well-resourced, well-supported crew can complete 200 days without a TQP event.
+    A fragile crew can trigger it early.
+  </div>
+
+  <!-- 2B: Per-Agent -->
+  <h3>B. Per-Agent Layer &mdash; 7 Internal State Variables (per astronaut)</h3>
+  <p>Each of the four crew members has an independent state updated daily from their personal beliefs and perceptions.</p>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Variable</th><th>Range</th><th>What It Measures</th><th>Primary Drivers</th></tr>
+    <tr><td><code>stress</code></td><td>[0,1]</td><td>Psychological load</td><td>Scarcity belief, MC neglect, unfairness — buffered by morale</td></tr>
+    <tr><td><code>morale</code></td><td>[0,1]</td><td>Motivation and positive affect</td><td>Mission viability belief, MC support belief, crew cohesion belief</td></tr>
+    <tr><td><code>fatigue</code></td><td>[0,1]</td><td>Physical/mental exhaustion</td><td>Accumulated stress; recovered by sleep quality</td></tr>
+    <tr><td><code>boredom</code></td><td>[0,1]</td><td>Mission disengagement</td><td>Low viability belief; reduced by crew cohesion</td></tr>
+    <tr><td><code>trust_in_crew</code></td><td>[0,1]</td><td>Felt trust toward crewmates</td><td>Social network graph mean edge weight</td></tr>
+    <tr><td><code>frustration_scarcity</code></td><td>[0,1]</td><td>Resource grievance level</td><td>Scarcity + unfairness beliefs; relieved by MC support</td></tr>
+    <tr><td><code>future_outlook</code></td><td>[0,1]</td><td>Hope vs. resignation</td><td>Direct proxy of mission viability belief</td></tr>
+    <tr><td><code>cooperation_threshold</code></td><td>[0,1]</td><td><em>Derived:</em> friction to cooperative action</td><td>0.45×stress + 0.25×fatigue + 0.30×frustration</td></tr>
+  </table>
+  </div>
+
+  <div class="callout red">
+    <strong>Cooperation gate:</strong> If <code>cooperation_threshold &ge; 0.70</code>, the agent
+    is blocked from cooperative actions regardless of intent. SUPPORT downgrades to MAINTAIN;
+    ENGAGE downgrades to WITHDRAW. The astronaut wants to cooperate but is physically and
+    psychologically incapacitated.
+  </div>
+
+  <!-- 2C: Resources -->
+  <h3>C. Resource Layer &mdash; 7 Objective Consumables</h3>
+  <p>
+    These are the ground truth — what is physically available aboard the habitat.
+    Agents never read these directly; they go through the perception layer first.
+  </p>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Resource</th><th>Represents</th><th>Depletion</th><th>Note</th></tr>
+    <tr><td><code>coffee</code></td><td>Comfort ritual / beverage access</td><td>0.5%/day</td><td>Primary scarcity signal in current model</td></tr>
+    <tr><td><code>food_variety</code></td><td>Meal quality (not calories)</td><td>0.3%/day</td><td>Modulates food quality perception and boredom</td></tr>
+    <tr><td><code>sleep_quality</code></td><td>Ambient sleep conditions</td><td>Managed</td><td>Driven by micro-events (sleep disruption) + circadian drift accumulator</td></tr>
+    <tr><td><code>comms_delay</code></td><td>Earth link latency (1.0 = worst)</td><td>Managed</td><td>Affects perceived comms reliability</td></tr>
+    <tr><td><code>hygiene_supplies</code></td><td>Personal hygiene consumables</td><td>0.4%/day</td><td>Contributes to overall resource picture</td></tr>
+    <tr><td><code>personal_entertainment</code></td><td>Books, games, music</td><td>0.6%/day</td><td>Fastest depleting resource</td></tr>
+    <tr><td><code>task_load</code></td><td>Objective daily workload</td><td>Managed</td><td>Nominal 0.65; spiked by micro-events</td></tr>
+  </table>
+  </div>
+
+  <p>
+    Depletion is scaled by a <code>consumption_modifier</code> computed from the prior day's crew
+    action distribution — a highly engaged, supportive crew depletes resources faster than a
+    withdrawn one.
+  </p>
+
+  <!-- 2D: Social Network -->
+  <h3>D. Social Network Layer &mdash; Full Graph Metrics (Module 05)</h3>
+  <p>
+    Module 05 (SocialNetworkModule) maintains a full weighted undirected graph over the crew.
+    Every day, each agent broadcasts interaction signals to every crewmate with intensity
+    determined by their action type. The graph updates via tie-strength drift, passive decay,
+    and active strengthening. Six metrics are captured per day:
+  </p>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Metric</th><th>Meaning</th></tr>
+    <tr><td><code>global_cohesion</code></td><td>Mean edge weight across all crew pairs — overall social bond health</td></tr>
+    <tr><td><code>fragmentation_index</code></td><td>Degree of social splintering — high = cliques isolating from each other</td></tr>
+    <tr><td><code>normalized_density</code></td><td>Fraction of possible connections still maintained at meaningful strength</td></tr>
+    <tr><td><code>clique_count</code></td><td>Number of detected subgroups (Bron-Kerbosch algorithm)</td></tr>
+    <tr><td><code>clique_coverage</code></td><td>Fraction of crew belonging to at least one clique</td></tr>
+    <tr><td><code>component_count</code></td><td>Number of disconnected components — approaching 2 signals dyadic fracture</td></tr>
+  </table>
+  </div>
+
+  <p>Action-to-signal intensity mapping (drives daily graph updates):</p>
+  <pre>SUPPORT  → 0.80   (cooperative, high-contact)
+ENGAGE   → 0.60   (active, medium-positive)
+MAINTAIN → 0.30   (neutral, low contact)
+ESCALATE → 0.15   (conflict-adjacent)
+WITHDRAW → 0.10   (avoidance, minimal contact)
+
+Micro-event modifiers (crew-wide):
+  conflict → −0.15   success → +0.10   novel → +0.05</pre>
+
+  <!-- 2E: Micro Events -->
+  <h3>E. Micro-Events &mdash; Daily Stochastic Perturbations</h3>
+  <p>
+    Approximately 52% of days have a micro-event drawn from a seeded RNG (deterministic).
+    Events perturb task load or sleep quality for that day only; effects route through the
+    resource layer and then through the full perception → belief → state pipeline.
+  </p>
+
+  <div class="callout">
+    <strong>Phase-aware event distribution:</strong> Event probabilities shift by mission phase.
+    In the <strong>third-quarter window (50&ndash;74%)</strong>: conflict events scale &times;1.8,
+    schedule slips &times;1.3, novel tasks &times;0.5, small wins &times;0.6.
+    In <strong>late phase (75&ndash;100%)</strong>: slips &times;1.5, task failures &times;1.4,
+    novelty &times;0.3, wins &times;0.4. This reflects real mission environmental change
+    (novelty decay, task repetition) without forcing agent state directly &mdash; all causal
+    paths still run through perception &rarr; belief &rarr; state.
+  </div>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Event</th><th>Prob.</th><th>Task Load Δ</th><th>Sleep Δ</th><th>Flag</th></tr>
+    <tr><td>schedule_slip</td><td>7%</td><td>+0.12</td><td>—</td><td>—</td></tr>
+    <tr><td>minor_task_failure</td><td>6%</td><td>+0.08</td><td>—</td><td>—</td></tr>
+    <tr><td>sleep_disruption</td><td>6%</td><td>—</td><td>−0.10</td><td>—</td></tr>
+    <tr><td>minor_conflict</td><td>5%</td><td>+0.05</td><td>—</td><td>conflict (social −0.15)</td></tr>
+    <tr><td>maintenance_surge</td><td>7%</td><td>+0.10</td><td>—</td><td>—</td></tr>
+    <tr><td>small_win</td><td>10%</td><td>—</td><td>—</td><td>success (social +0.10)</td></tr>
+    <tr><td>comms_glitch</td><td>5%</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td>novel_task</td><td>6%</td><td>—</td><td>—</td><td>novelty (M reset; social +0.05)</td></tr>
+  </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ===================================== -->
+<!-- SECTION 3: How Agents Have Behavior  -->
+<!-- ===================================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>How Agents Have Behavior</h2>
+  </div>
+
+  <p>
+    Agents are not scripted. Their behavior emerges because every output they produce is a
+    deterministic function of their current internal state, which is itself a function of their
+    subjective beliefs, which are a function of their personality-filtered perception of objective
+    reality. The chain runs in full every day for every agent.
+  </p>
+
+  <div class="callout">
+    The critical design invariant: <strong>no state variable has a time-indexed drift term.</strong>
+    An agent's stress does not rise simply because it is day 150. It rises because their beliefs
+    about resource scarcity, MC support, and fairness have deteriorated — and those beliefs
+    deteriorated because their perceptions have been negative for many days.
+  </div>
+
+  <!-- Step 1 -->
+  <h3>Step 1 — Perception: What the Agent Thinks They See</h3>
+
+  <p>
+    The <strong>PerceptionEngine</strong> takes the objective <code>ResourceState</code> and produces
+    a subjective <code>PerceivedState</code> — seven filtered readings. Each is modulated by the
+    agent's Big Five personality traits:
+  </p>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Perception</th><th>Formula</th><th>Trait</th><th>Effect</th></tr>
+    <tr>
+      <td>Coffee scarcity</td>
+      <td><code>(1 − stock) × (1 + (N−0.5) × 0.6)</code></td>
+      <td><span class="trait-badge trait-N">N</span></td>
+      <td>Neurotic agents perceive scarcity as 30% more severe at peak neuroticism</td>
+    </tr>
+    <tr>
+      <td>Food quality</td>
+      <td><code>food_variety × (1 + (O−0.5) × 0.4)</code></td>
+      <td><span class="trait-badge trait-O">O</span></td>
+      <td>Open agents enjoy variety 20% more; closed agents tolerate it 20% less</td>
+    </tr>
+    <tr>
+      <td>Distribution fairness</td>
+      <td>Share deviation × neuroticism (if underprivileged); × agreeableness (if over)</td>
+      <td><span class="trait-badge trait-N">N</span> <span class="trait-badge trait-A">A</span></td>
+      <td>Neurotic agents amplify grievance; agreeable agents tolerate overallocation with guilt</td>
+    </tr>
+    <tr>
+      <td>Mission support</td>
+      <td>No comms: drifts toward env quality; Comms received: type-specific boost (+0.05–+0.15)</td>
+      <td><span class="trait-badge trait-A">A</span> <span class="trait-badge trait-N">N</span></td>
+      <td>Agreeableness raises the floor; neuroticism slows recovery without direct confirmation</td>
+    </tr>
+    <tr>
+      <td>Social tension</td>
+      <td><code>(1 − mean_trust) × (1 + (E−0.5) × 0.5)</code></td>
+      <td><span class="trait-badge trait-E">E</span></td>
+      <td>Extraverted agents feel interpersonal friction 25% more intensely at peak extraversion</td>
+    </tr>
+    <tr>
+      <td>Sleep quality</td>
+      <td><code>sleep × (1 − (N−0.3) × 0.3)</code></td>
+      <td><span class="trait-badge trait-N">N</span></td>
+      <td>Neuroticism reduces perceived sleep quality; stable agents sleep the same as the environment</td>
+    </tr>
+  </table>
+  </div>
+
+  <!-- Step 2 -->
+  <h3>Step 2 — Belief Update: What the Agent Now Believes</h3>
+
+  <p>
+    The <strong>BeliefUpdateEngine</strong> takes <code>PerceivedState</code> and produces
+    <code>AstronautBeliefState</code> — six named beliefs that update slowly via <em>inertial
+    convergence</em>:
+  </p>
+
+  <pre>new_belief = prior × inertia + perception × (1 − inertia)
+
+inertia = base_inertia + inertia_delta
+
+<span class="comment">inertia_delta = −(neuroticism − 0.5) × N_factor    # high N → less inertia → more reactive
+             + (conscientiousness − 0.5) × C_factor  # high C → more inertia → requires evidence</span></pre>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Belief</th><th>Target</th><th>Special Logic</th></tr>
+    <tr><td><code>belief_coffee_scarcity</code></td><td>perceived_coffee_scarcity</td><td>—</td></tr>
+    <tr><td><code>belief_distribution_fairness</code></td><td>perceived_distribution_fairness</td><td>—</td></tr>
+    <tr><td><code>belief_resupply_reliability</code></td><td>perceived_comms_reliability</td><td><strong>+0.15 when resupply physically arrives; −0.05/overdue day when promise is broken</strong></td></tr>
+    <tr><td><code>belief_mission_control_support</code></td><td>perceived_mission_support</td><td><strong>Also decays when resupply is overdue — a broken promise erodes institutional trust</strong></td></tr>
+    <tr><td><code>belief_crew_cohesion</code></td><td>1.0 − perceived_social_tension</td><td>Inverted: high tension → low cohesion belief</td></tr>
+    <tr><td><code>belief_mission_viability</code></td><td>Composite of all other beliefs</td><td><code>(1−scarcity)×W₁ + fairness×W₂ + mc_support×W₃ + cohesion×W₄</code></td></tr>
+  </table>
+  </div>
+
+  <div class="callout green">
+    <strong>Key property:</strong> An agent can remain hopeful (<code>belief_mission_viability</code> high)
+    under scarcity if distribution is believed fair, MC is believed present, and crew cohesion is believed strong.
+    Scarcity alone does not produce despair. The full belief environment matters.
+  </div>
+
+  <!-- Step 3 -->
+  <h3>Step 3 — Internal State Drift: How the Agent Feels</h3>
+
+  <p>
+    The <strong>StateDriftEngine</strong> updates 7 internal variables from beliefs and perceptions.
+    No inertia here — deltas are applied additively, then blended. Key equations:
+  </p>
+
+  <h4>Stress</h4>
+  <pre>target = belief_coffee_scarcity    × 0.060
+       + (1 − belief_mc_support)   × 0.030
+       + (1 − belief_fairness)     × 0.040
+       − morale                    × 0.025    <span class="comment"># morale buffers stress</span>
+
+target × neg_amplifier  <span class="comment"># neg_amplifier = 1 + (N−0.5)×0.20</span>
+stress = prior×0.80 + target×0.20</pre>
+
+  <h4>Morale</h4>
+  <pre>delta = belief_mission_viability × 0.050
+      + belief_mc_support          × 0.025
+      + belief_crew_cohesion       × 0.025
+      − stress                     × 0.030
+
+delta × pos_buffer   <span class="comment"># pos_buffer = 1 + (A−0.5)×0.15</span>
+morale = prior×0.82 + (prior + delta×pos_buffer)×0.18</pre>
+
+  <h4>Fatigue</h4>
+  <pre>fatigue += stress × 0.045 − sleep_quality × 0.055   <span class="comment"># no personality modulation (physiological)</span></pre>
+
+  <h4>Boredom</h4>
+  <pre>target = (1 − belief_mission_viability) × 0.040    <span class="comment"># loss of purpose</span>
+       + belief_coffee_scarcity          × 0.015    <span class="comment"># monotony without novelty</span>
+       − belief_crew_cohesion            × 0.050    <span class="comment"># social engagement fights boredom</span>
+       − stress                          × 0.025    <span class="comment"># anxiety ≠ boredom</span></pre>
+
+  <h4>Trust in Crew</h4>
+  <pre>trust = prior×0.80 + social_net_mean_edge_weight×0.20
+floor  = agreeableness × 0.25   <span class="comment"># agreeable agents maintain baseline trust</span>
+trust  = max(trust, floor)</pre>
+
+  <h4>Frustration</h4>
+  <pre>target = belief_coffee_scarcity        × 0.055
+       + (1 − belief_fairness)          × 0.065    <span class="comment"># unfairness is primary driver</span>
+       − belief_mc_support              × 0.035    <span class="comment"># MC presence relieves it</span>
+       − belief_resupply_reliability    × 0.018
+
+target × neg_amplifier   <span class="comment"># same neuroticism amplifier as stress</span></pre>
+
+  <h4>Cooperation Threshold (derived, not drifted)</h4>
+  <pre>raw        = stress × 0.45 + fatigue × 0.25 + frustration × 0.30
+cooperation_threshold = raw / pos_buffer   <span class="comment"># agreeableness lowers the gate</span>
+                                            <span class="comment"># threshold ≥ 0.70 blocks cooperative actions</span></pre>
+
+  <!-- Step 4 -->
+  <h3>Step 4 — Action Selection: What the Agent Does</h3>
+
+  <p>
+    The <strong>PerAgentSelector</strong> maps internal state to one of five actions using
+    a personality-adjusted IntentPolicy. Internal state variables are first mapped to a synthetic
+    representation compatible with the policy engine:
+  </p>
+
+  <pre>synthetic.strain           = internal.stress
+synthetic.cohesion         = internal.trust_in_crew
+synthetic.monotony         = internal.boredom
+synthetic.tq_pressure      = (1.0 − future_outlook) × 0.5
+synthetic.mission_progress = day / mission_length</pre>
+
+  <p>The five actions and what they mean:</p>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Action</th><th>Meaning</th><th>Social Signal</th><th>Physics Effect</th></tr>
+    <tr><td><strong>SUPPORT</strong></td><td>Actively assist crewmates</td><td>0.80 intensity</td><td>+success_boost per fraction of crew in SUPPORT</td></tr>
+    <tr><td><strong>ENGAGE</strong></td><td>Invest in mission task; fight monotony</td><td>0.60 intensity</td><td>+novelty_boost per fraction of crew in ENGAGE</td></tr>
+    <tr><td><strong>MAINTAIN</strong></td><td>Hold steady; low cost, neutral</td><td>0.30 intensity</td><td>Nominal workload and recovery modifiers</td></tr>
+    <tr><td><strong>ESCALATE</strong></td><td>Express conflict; signal fracture</td><td>0.15 intensity</td><td>Elevated workload, reduced recovery</td></tr>
+    <tr><td><strong>WITHDRAW</strong></td><td>Disengage entirely; avoidance</td><td>0.10 intensity</td><td>Low workload but recovery also falls</td></tr>
+  </table>
+  </div>
+
+  <p>Personality modulates the thresholds that trigger each action:</p>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Trait</th><th>Effect on Thresholds</th></tr>
+    <tr>
+      <td><span class="trait-badge trait-N">N</span> Neuroticism</td>
+      <td>Lowers withdraw and high-strain thresholds by up to −0.30. Reactive agents retreat and escalate sooner.</td>
+    </tr>
+    <tr>
+      <td><span class="trait-badge trait-A">A</span> Agreeableness</td>
+      <td>Lowers support threshold (−0.10); raises escalation threshold (+0.15). Cooperative agents offer help earlier and fight less.</td>
+    </tr>
+    <tr>
+      <td><span class="trait-badge trait-E">E</span> Extraversion</td>
+      <td>Lowers monotony/engage threshold (−0.20). Social agents engage more readily when bored.</td>
+    </tr>
+    <tr>
+      <td><span class="trait-badge trait-C">C</span> Conscientiousness</td>
+      <td>Raises support threshold (+0.10). Deliberate agents are more selective about when to offer help.</td>
+    </tr>
+  </table>
+  </div>
+
+  <p>
+    After the policy selects an action, the cooperation gate fires:
+    if <code>cooperation_threshold &ge; 0.70</code>, SUPPORT &rarr; MAINTAIN and ENGAGE &rarr; WITHDRAW.
+    The agent's metadata records the gate firing, original intent, and threshold value.
+  </p>
+
+  <!-- Step 5 -->
+  <h3>Step 5 — Physics Aggregation: How Individual Behavior Drives Collective Dynamics</h3>
+
+  <p>
+    <code>aggregate_crew_inputs()</code> folds all four agents' actions into four physics modifiers
+    that scale the RuthlessCoreModel inputs for that day:
+  </p>
+
+  <pre>workload_modifier = mean(workload_multiplier per action)
+recovery_modifier = mean(recovery_multiplier per action)
+novelty_boost     = (fraction in ENGAGE) × engage_novelty_coefficient
+success_boost     = (fraction in SUPPORT) × support_success_coefficient
+
+effective_workload = base_workload × workload_modifier
+effective_recovery = base_recovery × recovery_modifier
+
+<span class="comment"># Executive function degradation: chronic fatigue+stress degrade coordination
+# Activates above ~0.35 combined impairment; up to +25% workload, -20% recovery</span>
+exec_impairment    = clamp((mean_fatigue×0.55 + mean_stress×0.45 − 0.35) × 1.4)
+effective_workload = clamp(effective_workload × (1 + exec_impairment × 0.25))
+effective_recovery = clamp(effective_recovery × (1 − exec_impairment × 0.20))
+
+<span class="comment"># Structural competence: high fatigue+boredom reduces quality of collective effort</span>
+effort_quality     = clamp(1 − max(0, (mean_burnout − 0.30)) × 1.3)
+novelty_boost     *= effort_quality   <span class="comment"># ENGAGE less energizing when burned out</span>
+success_boost     *= effort_quality   <span class="comment"># SUPPORT less effective when exhausted</span>
+
+effective_novelty  = base_novelty  + novelty_boost
+effective_success  = base_success  + success_boost</pre>
+
+  <div class="callout">
+    <strong>Individual behavior shapes collective physics.</strong> A crew where 3 of 4 agents are withdrawing
+    produces lower novelty_boost (boredom accelerates), lower success_boost (cohesion recovery weakens),
+    and lower social signal intensity (graph edges decay). These compound. The cascade is fully auditable
+    — every day's JSON records which agent took which action, what gate fired, and what physics inputs resulted.
+  </div>
+
+  <!-- Step 6: The closed loop -->
+  <h3>The Closed Loop — How the System Propagates</h3>
+
+  <pre><span class="comment">Actions today → social network update → edge weights change
+                                        ↓
+                             tomorrow's SocialProximityMap
+                                        ↓
+                             tomorrow's perceived_social_tension
+                                        ↓
+                             belief_crew_cohesion degrades
+                                        ↓
+                             morale falls → stress rises → cooperation_threshold rises
+                                        ↓
+                             cooperative actions blocked → ENGAGE→WITHDRAW, SUPPORT→MAINTAIN
+                                        ↓
+                             weak social signals → edges decay further
+                                        ↓
+                             (cycle repeats and amplifies)</span></pre>
+
+  <p>
+    This is the cascade pattern. An astronaut who withdraws reduces their interaction signal intensity.
+    Social edges weaken. Their crewmate perceives higher tension. The crewmate believes crew cohesion
+    is falling. The crewmate's morale drops. The crewmate's cooperation threshold rises.
+    The crewmate also withdraws. The loop is neither programmed nor scripted — it emerges from the
+    physics of the system.
+  </p>
+
+  <!-- Personality → Config -->
+  <h3>Personality &rarr; Physics: How Big Five Maps to RuthlessCoreConfig</h3>
+  <p>
+    When a crew preset is loaded, <code>PersonalityToConfigMapper</code> computes each crew member's
+    Big Five aggregate and maps it to the physics parameters that govern that crew's trajectory.
+    This means the same scenario (same events, same resources) produces genuinely different outcomes
+    for different personality compositions:
+  </p>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Trait</th><th>Physics Parameter</th><th>Formula</th><th>Interpretation</th></tr>
+    <tr>
+      <td rowspan="2"><span class="trait-badge trait-N">N</span> Neuroticism</td>
+      <td><code>initial_strain</code></td>
+      <td><code>0.0 + N × 0.15</code></td>
+      <td>Neurotic crews start with pre-existing stress</td>
+    </tr>
+    <tr>
+      <td><code>q_peak</code></td>
+      <td><code>0.50 + N × 0.15</code></td>
+      <td>Neurotic crews develop stronger TQ pressure</td>
+    </tr>
+    <tr>
+      <td rowspan="2"><span class="trait-badge trait-C">C</span> Conscientiousness</td>
+      <td><code>s_workload</code></td>
+      <td><code>0.035 − C × 0.015</code></td>
+      <td>Conscientious crews handle workload more efficiently (less strain per unit)</td>
+    </tr>
+    <tr>
+      <td><code>c_rebound</code></td>
+      <td><code>0.008 + C × 0.007</code></td>
+      <td>Conscientious crews recover cohesion better when pressure eases</td>
+    </tr>
+    <tr>
+      <td rowspan="2"><span class="trait-badge trait-A">A</span> Agreeableness</td>
+      <td><code>c_strain</code></td>
+      <td><code>0.012 − A × 0.007</code></td>
+      <td>Agreeable crews' cohesion is less damaged by per-agent strain</td>
+    </tr>
+    <tr>
+      <td><code>c_q</code></td>
+      <td><code>0.040 − A × 0.015</code></td>
+      <td>Agreeable crews' cohesion is more resilient to TQ pressure</td>
+    </tr>
+    <tr>
+      <td rowspan="2"><span class="trait-badge trait-E">E</span> Extraversion</td>
+      <td><code>m_base</code></td>
+      <td><code>0.006 + E × 0.005</code></td>
+      <td>Extraverted crews are more sensitive to isolation and sameness</td>
+    </tr>
+    <tr>
+      <td><code>m_novelty</code></td>
+      <td><code>0.15 + E × 0.10</code></td>
+      <td>Extraverted crews benefit more from novelty events</td>
+    </tr>
+    <tr>
+      <td><span class="trait-badge trait-O">O</span> Openness</td>
+      <td><code>m_novelty</code> (multiplier), <code>c_shared_success</code></td>
+      <td><code>m_novelty × (1 + O×0.2)</code>; <code>0.05 + O×0.03</code></td>
+      <td>Open crews get more novelty benefit and are more energized by shared wins</td>
+    </tr>
+  </table>
+  </div>
+
+  <!-- MC Comms -->
+  <h3>Mission Control Communications — The Intervention Pathway</h3>
+
+  <p>
+    An <code>MCCommunication</code> is injected into the runner externally by a human operator.
+    It travels through the pipeline with a one-day delivery lag (dispatched today, received tomorrow):
+  </p>
+
+  <pre>MCCommunication dispatch
+        ↓  (next day)
+PerceptionEngine reads MCCommSignal
+  → perceived_comms_reliability += 0.10 (bonus for any received comm)
+  → perceived_mission_support   += type-specific boost
+
+BeliefUpdateEngine reads new perception
+  → belief_mission_control_support converges toward new perceived support
+  → belief_resupply_reliability   : +0.10 if resupply_promised
+
+_apply_comm_deltas() applies direct belief deltas immediately:
+  → belief_mc_support += comm.belief_mc_support_delta
+  → belief_resupply   += comm.belief_resupply_reliability_delta</pre>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Comm Type</th><th>mc_support_delta</th><th>resupply_reliability_delta</th><th>Typical use</th></tr>
+    <tr><td>support</td><td>+0.10</td><td>0</td><td>Active emotional support message</td></tr>
+    <tr><td>reassurance</td><td>+0.08</td><td>0</td><td>Psychological check-in, mission confidence</td></tr>
+    <tr><td>acknowledgment</td><td>+0.06</td><td>0</td><td>MC recognizes crew effort</td></tr>
+    <tr><td>direction</td><td>+0.05</td><td>0</td><td>Task guidance, operational clarity</td></tr>
+    <tr><td>resupply_announcement</td><td>+0.04</td><td>+0.10</td><td>Resupply en route — double benefit</td></tr>
+  </table>
+  </div>
+
+  <div class="callout orange">
+    <strong>Broken promises decay trust.</strong> If a resupply is announced but arrives late, both
+    <code>belief_resupply_reliability</code> and <code>belief_mission_control_support</code> decay
+    by ~0.05 per overdue day. A broken MC promise is worse than no promise at all.
+  </div>
+
+  <div class="callout red">
+    <strong>Intervention compliance scales with crew state.</strong> High-strain and high-frustration
+    agents are less receptive to MC communications. Belief deltas are scaled by a compliance factor:
+    <code>compliance = max(0.35, 1 &minus; strain_reactance &minus; frustration_reactance)</code>
+    where each reactance term activates above 0.5. At peak strain and frustration, an intervention
+    delivers only 35% of its nominal belief delta. Interventions are never inert, but they are
+    significantly dampened where they are needed most &mdash; early intervention matters.
+  </div>
+
+</div>
+
+<hr class="divider">
+
+<!-- Footer -->
+<div style="padding: 32px 80px 0; display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+  <div style="font-size:12px; color:var(--muted); max-width:680px; line-height:1.8;">
+    <strong style="color:var(--text)">3QP v0.1 &mdash; MITRE Internal</strong><br>
+    Built by Rhys O'Neill, MITRE. Python 3.8+, stdlib-first, no ML libraries.
+    Physics engine (RuthlessCoreModel) frozen at v0.1. All 12 foundational modules at v0.1.
+    Calibration pipeline complete (Nelder-Mead); awaiting real analog mission data (MARS-500, HI-SEAS, Concordia).
+    Social network (Module 05) and twin runner fully integrated. CLI supports batch and twin modes with counterfactual intervention injection.
+  </div>
+  <div style="font-size:11px; color:var(--muted); background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:16px 20px; white-space:nowrap;">
+    <div style="margin-bottom:6px;"><strong style="color:var(--text)">Run the demo:</strong></div>
+    <code style="display:block; margin-bottom:4px;">cd integration/runtime</code>
+    <code style="display:block; margin-bottom:8px;">python -X utf8 demo_report.py</code>
+    <div style="margin-bottom:6px;"><strong style="color:var(--text)">Twin simulation:</strong></div>
+    <code style="display:block;">python -X utf8 run_simulation.py</code>
+    <code style="display:block;">  --mode twin --crew-preset fragile_team</code>
+    <code style="display:block;">  --days 200 --inject-comms "reassurance:100:7"</code>
+  </div>
+</div>
+
+</body>
+</html>
